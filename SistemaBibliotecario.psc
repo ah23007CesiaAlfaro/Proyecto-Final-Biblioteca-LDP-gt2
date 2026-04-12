@@ -298,3 +298,12 @@ FinPara
 Escribir "======================================================================"
 FinFunción
 
+
+Función VerSocios(socios, cS)
+Definir i Como Entero
+Escribir "ID | NOMBRE | LIBROS | MULTA"
+Escribir "--------------------------------"
+Para i <- 1 Hasta cS Hacer
+	Escribir socios[i,1], " | ", socios[i,2], " | Posee: ", socios[i,3], " | Deuda: $", socios[i,4]
+FinPara
+FinFunción
