@@ -1,3 +1,4 @@
+
 Algoritmo SistemaBibliotecarioFinal
 	// 1. DIMENSIÓN DE MATRICES
 	Definir autores, libros, socios, prestamos Como Cadena
@@ -84,4 +85,17 @@ Escribir 'Cantidad inicial:'
 Leer libros[cL, 4]
 libros[cL, 5] <- 'Disponible'
 FinFunción
+
+//CREACION DE FUNCION REGISTRARSOCIO: Registra un nuevo socio en el sistema, generando su ID 
+		// único automáticamente e inicializando sus contadores de multas y libros 
+		// prestados en cero.
 		
+		Función RegistrarSocio(socios Por Referencia,cS Por Referencia)
+		cS <- cS+1
+		Escribir 'Nombre del socio:'
+		Leer socios[cS,2]
+		socios[cS,1]<-'SOC'+ConvertirATexto(cS)
+		socios[cS,3]<-'0'//inicializa las multas
+		socios[cS,4]<-'0' // inicializa los Libros poseidos
+		Escribir '>> Registro exitoso. El ID asignado es: ', socios[cS,1] 
+FinFunción
