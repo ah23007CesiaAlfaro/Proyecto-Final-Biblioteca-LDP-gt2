@@ -99,3 +99,73 @@ FinFunción
 		socios[cS,4]<-'0' // inicializa los Libros poseidos
 		Escribir '>> Registro exitoso. El ID asignado es: ', socios[cS,1] 
 FinFunción
+
+// ==========================================
+// MÓDULOS DE GESTIÓN 
+// ==========================================
+Función GestionarPrestamo(libros Por Referencia,cL,socios Por Referencia,cS,prestamos Por Referencia,cP Por Referencia)
+Definir idS, idL Como Cadena
+Definir pS, pL, i, stk Como Entero
+Escribir '--- PROCESAR PRÉSTAMO ---'
+Escribir 'Ingrese ID del Socio:'
+Leer idS
+Escribir 'Ingrese ID del Libro:'
+Leer idL
+pS <- 0
+pL <- 0
+// 1. BUSCAR SOCIO Y LIBRO
+Para i<-1 Hasta cS Hacer
+	Si socios[i,1]=idS Entonces
+		pS <- i
+	FinSi
+FinPara
+Para i<-1 Hasta cL Hacer
+	Si libros[i,1]=idL Entonces
+		pL <- i
+	FinSi
+FinPara
+
+// 2. VALIDACIONES Y SALIDA DE DATOS
+Si pS>0 Y pL>0 Entonces
+	stk <- ConvertirANumero(libros[pL,4])
+	// Verificamos stock, límite de 3 libros y que no tenga multas
+	Si stk>0 Y ConvertirANumero(socios[pS,3])<3 Y socios[pS,4]='0' Entonces
+		// Registrar el préstamo
+		cP <- cP+1
+		prestamos[cP,1]<-idS
+		prestamos[cP,2]<-idL
+		prestamos[cP,3]<-'Activo'
+		// Actualizar matrices
+		libros[pL,4]<-ConvertirATexto(stk-1)
+		
+		// Si después de prestar el stock es 0, cambiar estado
+		Si (stk - 1) = 0 Entonces
+			libros[pL, 5] <- "Agotado"
+		FinSi
+		
+		
+		socios[pS,3]<-ConvertirATexto(ConvertirANumero(socios[pS,3])+1)
+		// ============================================================
+		// SALIDA DE DATOS SOLICITADA
+		// ============================================================
+		Limpiar Pantalla
+		Escribir '**********************************************'
+		Escribir '          COMPROBANTE DE PRÉSTAMO             '
+		Escribir '**********************************************'
+		Escribir 'SOCIO: ', socios[pS,2]
+		Escribir 'LIBRO: ', libros[pL,2] // Muestra el nombre del socio
+		Escribir '----------------------------------------------' // Muestra el título del libro
+		Escribir '¡PRÉSTAMO REALIZADO CON ÉXITO!'
+		Escribir ''
+		Escribir 'AVISO IMPORTANTE:'
+		Escribir 'Tiene un plazo de 7 DÍAS para devolver el libro.'
+		Escribir 'De lo contrario, se aplicará una multa de $0.50'
+		Escribir 'por cada día de retraso.'
+		Escribir '**********************************************'
+	SiNo
+		Escribir '>>> ERROR: El socio tiene multas, alcanzó el límite de 3 libros o no hay stock.'
+	FinSi
+SiNo
+	Escribir '>>> ERROR: ID de Socio o Libro no encontrado.'
+FinSi
+FinFunción
