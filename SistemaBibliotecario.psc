@@ -46,7 +46,7 @@ Algoritmo SistemaBibliotecarioFinal
 		Escribir ">>> ERROR: La opción ", opcion_menu, " no es válida"
 FinSegún
 
-i opcion_menu <> "9" Entonces
+Si opcion_menu <> "9" Entonces
 Escribir ""
 Escribir "Presione cualquier tecla para continuar..."
 Esperar Tecla
