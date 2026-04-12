@@ -274,3 +274,27 @@ Si posS>0 Entonces
 FinSi
 FinFunción
 
+Función VerInventario(libros, cL, autores, cA)
+Definir i, j Como Entero
+Definir nombreAutor Como Cadena
+
+Escribir "======================================================================"
+Escribir "ID | TÍTULO  | AUTOR | STOCK | ESTADO"
+Escribir "----------------------------------------------------------------------"
+
+Para i <- 1 Hasta cL Hacer
+	nombreAutor <- "Desconocido" // Valor por si no se encuentra el ID
+	
+	// BÚSQUEDA CRUZADA: Buscamos el ID del autor en la matriz de autores
+	Para j <- 1 Hasta cA Hacer
+		Si autores[j, 1] = libros[i, 3] Entonces
+			nombreAutor <- autores[j, 2]
+		FinSi
+	FinPara
+	
+	// Imprimimos la línea completa con el nombre del autor ya localizado
+	Escribir libros[i, 1], " | ", libros[i, 2], " | ", nombreAutor, " | ", libros[i, 4], " | ", libros[i, 5]
+FinPara
+Escribir "======================================================================"
+FinFunción
+
