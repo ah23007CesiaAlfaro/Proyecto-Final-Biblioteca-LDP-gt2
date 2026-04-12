@@ -248,3 +248,29 @@ Subproceso GestionarDevolucion(libros Por Referencia, cL, socios Por Referencia,
 		Escribir ">>> ERROR: No se encontro ese libro prestado a ese socio."
 	FinSi
 FinSubproceso
+
+
+Función PagarMulta(socios Por Referencia,cS)
+Definir idS Como Cadena
+Definir i, posS Como Entero
+Definir monto, deuda Como Real
+Escribir 'ID Socio:'
+Leer idS
+posS <- 0
+Para i<-1 Hasta cS Hacer
+	Si socios[i,1]=idS Entonces
+		posS <- i
+	FinSi
+FinPara
+Si posS>0 Entonces
+	deuda <- ConvertirANumero(socios[posS,4])
+	Escribir 'Deuda: $', deuda
+	Si deuda>0 Entonces
+		Escribir 'Monto a pagar:'
+		Leer monto
+		socios[posS,4]<-ConvertirATexto(deuda-monto)
+		Escribir 'Pago realizado.'
+	FinSi
+FinSi
+FinFunción
+
