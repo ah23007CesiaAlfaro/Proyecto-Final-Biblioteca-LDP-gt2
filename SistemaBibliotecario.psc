@@ -1,10 +1,10 @@
 
 Algoritmo SistemaBibliotecario
-	// 1. DIMENSIÓN DE MATRICES
+	
 	Definir autores, libros, socios, prestamos Como Cadena
 	Definir contadorAutores, contadorLibros, contadorSocios, contadorPrestamos Como Entero
 	Definir opcionMenu Como Cadena
-	
+	//Matrices
 	Dimensionar autores(101,3), libros(101,6), socios(101,5), prestamos(501,6)
 	
 	contadorAutores <- 0
