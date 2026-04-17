@@ -83,7 +83,7 @@ Escribir 'Título del libro:'
 Leer libros[contLibros, 2]
 Escribir 'ID del Autor:'
 Leer idAutor
-libros[contLibros, 1] <- 'LIB' + ConvertirATexto(contLibros)
+libros[contLibros, 1] <- 'LIB' + ConvertirATexto(contLibros)//asignacion de ID de libro 
 libros[contLibros, 3] <- idAutor
 Escribir 'Cantidad inicial:'
 Leer libros[contLibros, 4]
@@ -100,7 +100,7 @@ FinFunción
 		Leer socios[contSocio,2]
 		socios[contSocio,1]<-'SOC'+ConvertirATexto(contSocio)
 		socios[contSocio,3]<-'0'//inicializa las multas
-		socios[contSocio,4]<-'0' // inicializa los Libros poseidos
+		socios[contSocio,4]<-'0' // inicializa los Libros que el cliente posee 
 		Escribir '>> Registro exitoso. El ID asignado es: ', socios[contSocio,1] 
 FinFunción
 
@@ -129,8 +129,8 @@ posicionLibro <- 0 // Esto sirve como bandera de control antes de realizar el re
 //El objetivo es localizar que en la fila PosicionSocio para socio, posicionLibro para libros
 //encuentren los datos dentro de las matrices.
 Para i<-1 Hasta contSocio Hacer
-	Si socios[i,1]=idSocio Entonces
-		posicionSocio <- i
+	Si socios[i,1]=idSocio Entonces // verifica que el id que esta guardado en la columna 1 de la fila socios i,1 es igual 
+		posicionSocio <- i // a la que el usuario escribio.
 	FinSi
 	
 FinPara
@@ -197,7 +197,7 @@ FinFunción
 
 
 // Devoluciones
-//
+
 Subproceso GestionarDevolucion(libros Por Referencia, contLibros, socios Por Referencia, contSocio, prestamos Por Referencia)
 	Definir idLibro, idSocio Como Texto
 	Definir i, j, dias Como Entero
@@ -216,8 +216,8 @@ Subproceso GestionarDevolucion(libros Por Referencia, contLibros, socios Por Ref
 	Para i <- 1 Hasta 500 Hacer
 		// Validamos ID Libro, ID Socio y que el prestamo este Activo
 		Si prestamos[i, 2] = idLibro Y prestamos[i, 1] = idSocio Y prestamos[i, 3] = "Activo" Entonces
-			Si encontrado = Falso Entonces // Si encontrado es falso significa que es la primera vez que se detecta un prestamo valido asi que procede
-				encontrado <- Verdadero // Si encontrado fuera verdadero  el programa ignora este bloque(evitando que cuente dos veces la misma devolucion)
+			Si encontrado = Falso Entonces 
+				encontrado <- Verdadero 
 				prestamos[i, 3] <- "Finalizado"
 				Escribir "Libro: ", idLibro, " del Socio: ", idSocio, " identificado."
 				Escribir "Días totales que tuvo el libro:"
