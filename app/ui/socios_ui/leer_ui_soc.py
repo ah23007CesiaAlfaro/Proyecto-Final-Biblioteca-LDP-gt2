@@ -1,3 +1,5 @@
+from app.services.socios_services import SociosServices
+
 def listar(service):
     socios = service.mostrar_socios()
     if not socios:

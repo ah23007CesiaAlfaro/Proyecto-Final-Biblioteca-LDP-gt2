@@ -1,3 +1,5 @@
+from app.services.socios_services import SociosServices
+
 def actualizar(service):
     print("\n--- ACTUALIZAR SOCIO ---")
     id_buscado = input("Ingrese el ID del socio a modificar: ")

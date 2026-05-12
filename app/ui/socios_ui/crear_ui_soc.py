@@ -1,3 +1,5 @@
+from app.services.socios_services import SociosServices
+
 def crear(service):
     print("\n" + "=" * 30)
     print("  REGISTRO DE SOCIO")

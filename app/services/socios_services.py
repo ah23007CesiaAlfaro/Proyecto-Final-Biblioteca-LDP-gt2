@@ -1,4 +1,4 @@
-from models.socio import Socio
+from app.models.socio import Socio
 
 class SociosServices:
     def __init__(self):
