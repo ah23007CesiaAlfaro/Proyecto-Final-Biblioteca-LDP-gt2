@@ -1,4 +1,3 @@
-
 from app.ui.menu_principal import mostrar_menu
 
 def main():
