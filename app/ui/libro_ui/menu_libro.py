@@ -14,7 +14,7 @@ def menu_libros(service):
          print ("4.Eliminar Libro")
          print  ("0. Salir")
          print("="*30)
-         opcion= input("Seleccionar opcion")
+         opcion= input("Seleccionar opcion :")
 
          if opcion=="1":
               crear(service)
@@ -30,3 +30,4 @@ def menu_libros(service):
               break
          else: 
               print ("opcion no valida" )   
+              

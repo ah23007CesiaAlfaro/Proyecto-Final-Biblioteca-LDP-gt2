@@ -12,6 +12,7 @@ class LibrosServices :
                 nuevo_stock=libro.get_stock()+int(stock)
                 libro._stock= nuevo_stock
                 return libro,False
+            
         formato_id=f"LIB{self._id_contador:02d}"    
 
         nuevo_libro=Libro(formato_id, titulo,  id_autor, int(stock), estado)
