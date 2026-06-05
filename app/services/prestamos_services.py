@@ -56,6 +56,31 @@ class PrestamosServices:
             return True, multa, f"Devolución con {dias_atrasados} día(s) de retraso."
 
         return True, 0.0, "Devolución a tiempo. Sin multa."
+    
+     # PAGO DE MULTA 
+    
+    def pagar_multa(self, socio, monto):
+        multa_actual = socio.get_multa()
+        if multa_actual == 0:
+            return False, "El socio no tiene multas pendientes."
+
+        monto = round(float(monto), 2)
+        if monto < multa_actual:
+            return False, f"El monto ingresado (${monto:.2f}) es menor a la multa (${multa_actual:.2f}). Debe pagar el total."
+
+        socio.set_multa(0.0)
+        return True, f"Pago recibido. Multa saldada. Cambio: ${monto - multa_actual:.2f}"
+
+    # ── AUXILIAR ──────────────────────────────────────────────
+    def _buscar_prestamo(self, id_socio, id_libro):
+        for p in self._prestamos:
+            if p.get_id_socio() == id_socio and p.get_id_libro() == id_libro:
+                return p
+        return None
+
+    def mostrar_prestamos(self):
+        return self._prestamos
+
 
     
 
