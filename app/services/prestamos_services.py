@@ -30,6 +30,33 @@ class PrestamosServices:
         nuevo = Prestamo(id_prestamo, socio.get_id(), libro.get_id())
         self._prestamos.append(nuevo)
         self._contador +=1
+
+        # DEVOLUCIÓN 
+    def realizar_devolucion(self, socio, libro, dias):
+        """
+        Busca el préstamo activo, lo elimina y aplica multa si corresponde.
+        Retorna (exito: bool, multa_generada: float, mensaje: str)
+        """
+        prestamo = self._buscar_prestamo(socio.get_id(), libro.get_id())
+        if not prestamo:
+            return False, 0.0, "No se encontró un préstamo activo para ese socio y libro."
+
+        # Eliminar préstamo
+        self._prestamos.remove(prestamo)
+
+        # Devolver stock y reducir contador del socio
+        libro.set_stock(libro.get_stock() + 1)
+        socio.set_libros_prestados(socio.get_libros_prestados() - 1)
+
+        # Calcular multa
+        dias_atrasados = int(dias) - DIAS_PERMITIDOS
+        if dias_atrasados > 0:
+            multa = round(dias_atrasados * MULTA_POR_DIA, 2)
+            socio.set_multa(socio.get_multa() + multa)
+            return True, multa, f"Devolución con {dias_atrasados} día(s) de retraso."
+
+        return True, 0.0, "Devolución a tiempo. Sin multa."
+
     
 
 
