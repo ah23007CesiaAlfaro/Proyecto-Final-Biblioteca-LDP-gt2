@@ -17,8 +17,8 @@ def crear(service):
 
     autor_obj, es_nuevo = service.crear_autor(nombre, nacionalidad)
     if es_nuevo:
-        print(f"\n[+] ¡ÉXITO! Nuevo autor registrado con ID: {autor_obj.get_id()}")
+        print(f"\n¡ÉXITO! Nuevo autor registrado con ID: {autor_obj.get_id()}")
     else:
-        print(f"\n[*] AVISO: El autor '{autor_obj.get_nombre()}' ya existe con ID: {autor_obj.get_id()}")
+        print(f"\n AVISO: El autor '{autor_obj.get_nombre()}' ya existe con ID: {autor_obj.get_id()}")
 
     input("\nPresione Enter para continuar...")

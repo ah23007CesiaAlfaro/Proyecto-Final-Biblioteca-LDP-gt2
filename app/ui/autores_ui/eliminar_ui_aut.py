@@ -5,5 +5,5 @@ def eliminar(service):
     if eliminado:
         print(f"\n¡Autor '{eliminado.get_nombre()}' eliminado correctamente!")
     else:
-        print("\n[!] No se encontró ningún autor con ese ID.")
+        print("\n No se encontró ningún autor con ese ID.")
     input("\nPresione Enter para continuar...")
