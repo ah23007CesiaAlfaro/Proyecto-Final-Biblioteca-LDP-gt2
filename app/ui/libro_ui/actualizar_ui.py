@@ -12,4 +12,3 @@ def actualizar(service):
     else:
         print("\n[!] No se encontró el libro o no se pudo actualizar.")
     input("\nPresione Enter para continuar...")
-    
