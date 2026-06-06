@@ -71,7 +71,7 @@ class PrestamosServices:
         socio.set_multa(0.0)
         return True, f"Pago recibido. Multa saldada. Cambio: ${monto - multa_actual:.2f}"
 
-    # ── AUXILIAR ──────────────────────────────────────────────
+    # buscar el prestamo
     def _buscar_prestamo(self, id_socio, id_libro):
         for p in self._prestamos:
             if p.get_id_socio() == id_socio and p.get_id_libro() == id_libro:
