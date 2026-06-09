@@ -1,14 +1,16 @@
-def listar(service):
-    libros = service.mostrar_libros()
-    if not libros:
-        print("\n[!] No hay libros registrados en el sistema.")
-        input("\nPresione Enter para continuar...")
-        return
+from app.ui.helpers import titulo, pausar
 
-    print("\n" + "="*80)
-    print(f"{'ID':<8} | {'Título':<25} | {'Autor':<15} | {'Stock':<8} | {'Estado':<8}")
-    print("="*80)
-    for l in libros:
-        print(f"{l.get_id():<8} | {l.get_titulo():<25} | {l.get_id_autor():<15} | {l.get_stock():<8} | {l.get_estado():<8}")
-    print("="*80)
-    input("\nPresione Enter para continuar...")
+
+def leer_libros(libros_service, autores_service):
+    titulo("LISTA DE LIBROS")
+    libros = libros_service.mostrar_libros()
+    if not libros:
+        print("  No hay libros registrados.")
+    else:
+        print(f"  {'ID':<8} {'Título':<28} {'Autor':<20} {'Stock'}")
+        print("  " + "-" * 65)
+        for l in libros:
+            autor = autores_service.buscar_por_id(l.get_id_autor())
+            nombre_autor = autor.get_nombre() if autor else l.get_id_autor()
+            print(f"  {l.get_id():<8} {l.get_titulo():<28} {nombre_autor:<20} {l.get_stock()}")
+    pausar()

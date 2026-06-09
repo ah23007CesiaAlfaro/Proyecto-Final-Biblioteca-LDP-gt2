@@ -11,8 +11,8 @@ def actualizar(service):
         if actualizado:
             print(f"\n¡Socio {id_buscado} actualizado correctamente!")
         else:
-            print("\n[!] No se encontró el socio o no se pudo actualizar.")
+            print("\n!No se encontró el socio o no se pudo actualizar.")
     else:
-        print("\nOperación cancelada. No se realizaron cambios.")
+        print("\n Operación cancelada. No se realizaron cambios.")
 
-    input("\nPresione Enter para continuar...")
+    input("\n Presione Enter para continuar...")

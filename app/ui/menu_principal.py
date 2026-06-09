@@ -1,3 +1,4 @@
+# 🌟 CORREGIDO: Importaciones apuntando a los nombres reales de tus archivos en app/services/
 from app.services.autores_services import AutoresServices
 from app.services.libro_services import LibrosServices
 from app.services.socios_services import SociosServices
@@ -6,13 +7,13 @@ from app.services.prestamos_services import PrestamosServices
 from app.ui.autores_ui.menu_aut import menu_autores
 from app.ui.libro_ui.menu_libro import menu_libros
 from app.ui.socios_ui.menu_soc import menu_socios
-from app.ui.prestamo_ui.prestamo_ui import realizar_prestamo
-from app.ui.prestamo_ui.devolucion_ui import realizar_devolucion
-from app.ui.prestamo_ui.pago_multa_ui import pagar_multa
+from app.ui.prestamos_ui.prestamo_ui import realizar_prestamo
+from app.ui.prestamos_ui.devolucion_ui import realizar_devolucion
+from app.ui.prestamos_ui.pago_multa_ui import pagar_multa
 
 
 def mostrar_menu():
-    # Servicios compartidos entre todos los módulos
+    # Inicialización de los servicios compartidos
     autores_service = AutoresServices()
     libros_service = LibrosServices()
     socios_service = SociosServices()

@@ -1,4 +1,4 @@
-def listar(service):
+def vista_listar_autores(service):
     autores = service.mostrar_autores()
     if not autores:
         print("\n[!] No hay autores registrados en el sistema.")
@@ -11,4 +11,4 @@ def listar(service):
     for a in autores:
         print(f"{a.get_id():<8} | {a.get_nombre():<25} | {a.get_nacionalidad():<15}")
     print("="*50)
-    input("\nPresione Enter para continuar...")
+    input("\n Presione Enter para continuar...")

@@ -19,16 +19,27 @@ class AutoresServices:
     # R
     def mostrar_autores(self):
         return self._autores
-
-    # U
-    def actualizar_autor(self, id_autor, nuevo_nombre=None, nueva_nacionalidad=None):
+    
+    #busca por el id
+    def buscar_por_id(self, id_autor):
         for autor in self._autores:
             if autor.get_id() == id_autor:
-                if nuevo_nombre:
-                    autor.set_nombre(nuevo_nombre)
-                if nueva_nacionalidad:
-                    autor.set_nacionalidad(nueva_nacionalidad)
                 return autor
+        return None
+
+
+
+   # U - Método Actualizar Corregido
+    def actualizar_autor(self, id_autor, nuevo_nombre=None, nueva_nacionalidad=None):
+        autor = self.buscar_por_id(id_autor)
+        if autor:
+            if nuevo_nombre:
+                autor.set_nombre(nuevo_nombre)
+            if nueva_nacionalidad:
+                autor.set_nacionalidad(nueva_nacionalidad)
+            
+            return autor 
+            
         return None
 
     # D
@@ -38,3 +49,4 @@ class AutoresServices:
                 return self._autores.pop(i)
         return None
     
+  

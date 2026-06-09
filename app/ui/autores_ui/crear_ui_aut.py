@@ -1,4 +1,4 @@
-def crear(service):
+def vista_crear_autor(service):
     print("\n" + "="*30)
     print("   REGISTRO DE AUTOR")
     print("="*30)

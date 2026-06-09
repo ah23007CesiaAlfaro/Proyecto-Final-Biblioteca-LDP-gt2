@@ -1,42 +1,47 @@
 from app.models.libro import Libro
 
-class LibrosServices :
+
+class LibrosServices:
     def __init__(self):
-        self._libros=[]
-        self._id_contador=1
+        self._libros = []
+        self._contador = 1
 
-#FUNCION CREATE(C)
-    def crear_libro (self,  titulo,  id_autor, stock, estado='Disponible') :
+    # CREATE  (si titulo+autor ya existe, solo suma el stock)
+    def crear_libro(self, titulo, id_autor, stock):
         for libro in self._libros:
-            if libro.get_titulo().lower()==titulo.lower() and libro.get_id_autor()==id_autor:
-                nuevo_stock=libro.get_stock()+int(stock)
-                libro._stock= nuevo_stock
-                return libro,False
-            
-        formato_id=f"LIB{self._id_contador:02d}"    
+            if libro.get_titulo().lower() == titulo.lower() and libro.get_id_autor() == id_autor:
+                libro.set_stock(libro.get_stock() + int(stock))
+                return libro, False  # stock actualizado
+        id_libro = f"LIB{self._contador:02d}"
+        nuevo = Libro(id_libro, titulo, id_autor, int(stock))
+        self._libros.append(nuevo)
+        self._contador += 1
+        return nuevo, True
 
-        nuevo_libro=Libro(formato_id, titulo,  id_autor, int(stock), estado)
-        self._libros.append(nuevo_libro)
-        self._id_contador +=1
-        return nuevo_libro,True
-    
-    #FUNCION LEER(R)
+    # READ
     def mostrar_libros(self):
-        return  self._libros
-    
-    #FUNCION ACTUALIZAR (UP)
-    
-    def actualizar_libro(self,id_libro,nuevo_titulo):
-        for libro in self._libros: 
-            if libro.get_id()==id_libro:
-                libro._titulo=nuevo_titulo
-                return libro 
+        return self._libros
+
+    def buscar_por_id(self, id_libro):
+        for libro in self._libros:
+            if libro.get_id() == id_libro:
+                return libro
         return None
 
-    #FUNCION ELIMINAR (D)
-    def eliminar_libro(self,id_libro):
-        for i,libro in enumerate(self._libros):
-            if libro.get_id()==id_libro:
+    # UPDATE
+    def actualizar_libro(self, id_libro, nuevo_titulo=None, nuevo_stock=None):
+        libro = self.buscar_por_id(id_libro)
+        if libro:
+            if nuevo_titulo:
+                libro.set_titulo(nuevo_titulo)
+            if nuevo_stock is not None:
+                libro.set_stock(int(nuevo_stock))
+            return libro
+        return None
+
+    # DELETE
+    def eliminar_libro(self, id_libro):
+        for i, libro in enumerate(self._libros):
+            if libro.get_id() == id_libro:
                 return self._libros.pop(i)
-        return None   
-      
+        return None

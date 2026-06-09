@@ -1,14 +1,29 @@
-def actualizar(service):
-    print("\n--- ACTUALIZAR LIBRO ---")
-    id_buscado = input("Ingrese el ID del libro a modificar: ")
-    
-    # Primero buscamos si existe para pedir los nuevos datos
-    nuevo_titulo = input("Nuevo título (deje vacío para no cambiar): ")
-    
-    actualizado = service.actualizar_libro(id_buscado, nuevo_titulo)
-    
-    if actualizado:
-        print(f"\n¡Libro {id_buscado} actualizado correctamente!")
-    else:
-        print("\n[!] No se encontró el libro o no se pudo actualizar.")
-    input("\nPresione Enter para continuar...")
+from app.ui.helpers import titulo, pausar
+
+
+def actualizar_libro(service):
+    titulo("ACTUALIZAR LIBRO")
+    id_libro = input("  ID del libro a actualizar: ").strip().upper()
+    libro = service.buscar_por_id(id_libro)
+    if not libro:
+        print("  ! No se encontró un libro con ese ID.")
+        pausar()
+        return
+
+    print(f"\n  Libro actual: '{libro.get_titulo()}' | Stock: {libro.get_stock()}")
+    nuevo_titulo = input("  Nuevo título (ENTER para no cambiar): ").strip()
+    nuevo_stock_str = input("  Nuevo stock (ENTER para no cambiar): ").strip()
+
+    nuevo_stock = None
+    if nuevo_stock_str:
+        try:
+            nuevo_stock = int(nuevo_stock_str)
+            if nuevo_stock < 0:
+                raise ValueError
+        except ValueError:
+            print("  [!] Stock inválido. No se modificó.")
+            nuevo_stock = None
+
+    service.actualizar_libro(id_libro, nuevo_titulo or None, nuevo_stock)
+    print("   Libro actualizado correctamente.")
+    pausar()
