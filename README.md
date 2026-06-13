@@ -1,43 +1,28 @@
-Sistema de Gestión Bibliotecaria
-_____________________________________
-Este proyecto consiste en el desarrollo de un Sistema de Gestión Bibliotecaria implementado en PSeInt. El sistema permite administrar de manera eficiente el inventario de libros, el registro de autores, la gestión de socios y el control detallado de préstamos y multas mediante una estructura de datos basada en matrices.
+#  Sistema de Gestión Bibliotecaria — LDP GT2
 
-Integrantes
-____________________
-Cesia Mariena Alfaro Hernandez
+Este proyecto consiste en el desarrollo de un **Sistema de Gestión Bibliotecaria** avanzado, migrado y optimizado en **Python**. El sistema permite administrar de manera eficiente el inventario de libros, el registro de autores, la gestión de socios y el control detallado de préstamos y multas. 
 
-Gabriel Antonio Call Ortiz
+A diferencia de las versiones iniciales, esta implementación en Python adopta una **arquitectura limpia orientada a servicios**, garantizando la separación de responsabilidades, la escalabilidad del código y la facilidad para realizar pruebas automatizadas.
 
-Jefry Odir Brizuela Rivas
+---
 
-Descripción del Proyecto
-_____________________________
-El sistema ha sido diseñado bajo un enfoque de arquitectura modular, donde cada funcionalidad crítica reside en subprocesos independientes. Esto garantiza que la lógica de negocio (como el cálculo de multas o la actualización de stock) se ejecute de forma aislada, mejorando la mantenibilidad y escalabilidad del software.
+##  Integrantes del Equipo
+* **Cesia Mariena Alfaro Hernandez**
+* **Gabriel Antonio Call Ortiz**
+* **Jefry Odir Brizuela Rivas**
 
-Características Principales
-_______________________________
-1-Gestión de Inventario: Registro automático de autores y libros con generación de IDs únicos.
-2-Control de Préstamos: Validación de disponibilidad de stock, límites de préstamos por socio (máximo 3) y bloqueo por multas pendientes.
-3-Cálculo de Multas: Implementación de lógica de retraso (multa de $0.50 por día después de los 7 días de plazo).
-4-Búsqueda Relacional: Sistema de "Búsqueda Cruzada" para vincular autores con sus respectivos libros sin redundancia de datos.
-5-Persistencia en Memoria: Uso de matrices estructuradas para el almacenamiento de datos durante la ejecución.
+---
 
-Estructura Técnica
-____________________________
-El código utiliza un paradigma de programación estructurada:
+##  Estructura y Arquitectura del Proyecto
 
-Matrices Globales: Actúan como el repositorio maestro para la persistencia de información (libros, socios, autores, préstamos).
+El sistema se organiza bajo el directorio raíz `aps`, estructurado en capas para asegurar que la lógica de negocio, los datos y la interfaz no se mezclen:
 
-Variables Locales: Utilizadas en cada subproceso para cálculos temporales y contadores, garantizando el encapsulamiento de datos y evitando colisiones.
-
-Conversión de Tipos: Implementación de funciones ConvertirANumero y ConvertirATexto para manipular datos almacenados como cadenas de texto en las matrices.
-
-Instrucciones de Uso
-______________________________
-Asegúrese de tener instalado PSeInt.
-
-Abra el archivo SistemaBibliotecario.psc en el entorno.
-
-Presione F9 para ejecutar el programa.
-
-Navegue a través del menú principal para realizar las operaciones de registro, gestión de préstamos, devoluciones o consultas de inventario.
+```text
+├── aps/                  # Carpeta principal de la aplicación (Application)
+│   ├── models/           # Definición y persistencia de las estructuras de datos (Matrices/Clases)
+│   ├── services/         # Lógica de negocio principal (Reglas de préstamo, cálculo de multas)
+│   ├── ui/               # Interfaz de Usuario (Menús interactivos, captura de datos por consola)
+│   └── test/             # Pruebas unitarias para validar la robustez de los algoritmos
+├── documentacion/        # Manuales, requisitos y diagramas del sistema
+├── .gitignore            # Archivos y cachés excluidos de Git (ej. __pycache__/)
+└── README.md             # Documentación general del proyecto (Este archivo
