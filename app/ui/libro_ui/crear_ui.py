@@ -39,7 +39,7 @@ def crear_libro(libros_service, autores_service):
         pausar()
         return
 
-    # 5. Llamada al servicio (AQUÍ ESTÁ LA CORRECCIÓN DEL FLUJO)
+    # 5. Llamada al servicio.
     libro, es_nuevo = libros_service.crear_libro(titulo_libro, id_autor, stock)
 
     # Lógica de salida limpia y correcta

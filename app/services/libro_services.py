@@ -5,8 +5,7 @@ class LibrosServices:
     def __init__(self, autores_service=None):
         self._libros = []
         self._contador = 1
-        # Si no nos pasan un servicio (main), creamos uno propio.
-        # Si nos pasan uno (tests), usamos ese.
+       
         self.autores_service = autores_service if autores_service else AutoresServices()
 
     def crear_libro(self, titulo, id_autor, stock):
