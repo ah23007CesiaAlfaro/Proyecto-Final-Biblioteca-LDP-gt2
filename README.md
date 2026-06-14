@@ -23,6 +23,6 @@ El sistema se organiza bajo el directorio raíz `aps`, estructurado en capas par
 │   ├── services/         # Lógica de negocio principal (Reglas de préstamo, cálculo de multas)
 │   ├── ui/               # Interfaz de Usuario (Menús interactivos, captura de datos por consola)
 │   └── test/             # Pruebas unitarias para validar la robustez de los algoritmos
-├── documentacion/        # Manuales, requisitos y diagramas del sistema
+├── documentacion/        # Sistema realizado en  Pseint.
 ├── .gitignore            # Archivos y cachés excluidos de Git (ej. __pycache__/)
-└── README.md             # Documentación general del proyecto (Este archivo
+└── README.md             # Explicacion de proyecto.
