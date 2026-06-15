@@ -16,7 +16,7 @@ Este proyecto consiste en el desarrollo de un **Sistema de Gestión Bibliotecari
 
 El sistema se organiza bajo el directorio raíz `aps`, estructurado en capas para asegurar que la lógica de negocio, los datos y la interfaz no se mezclen:
 
-
+```text
 ├── aps/                  # Carpeta principal de la aplicación (Application)
 │   ├── models/           # Definición y persistencia de las estructuras de datos
 │   ├── services/         # Lógica de negocio principal (Reglas de préstamo, cálculo de multas)
