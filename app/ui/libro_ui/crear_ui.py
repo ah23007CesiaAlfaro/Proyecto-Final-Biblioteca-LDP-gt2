@@ -1,34 +1,55 @@
-def crear(service):
-    print("\n" + "="*30)
-    print("   REGISTRO DE LIBRO")
-    print("="*30)
+from app.ui.helpers import titulo, pausar
 
-    while True:
-        titulo = input("Ingrese el titulo: ")
-        if titulo.strip():
-            break
-        print("El titulo no puede estar vacio.")
+def crear_libro(libros_service, autores_service):
+    titulo("REGISTRAR LIBRO")
 
-    while True:
-        id_aut = input("Ingrese el ID del Autor: ")
-        if id_aut.strip():
-            break
-        print("El ID del autor no puede estar vacío.")
-        
-    while True:
-        stock_input = input("Ingrese la cantidad: ")
-        if stock_input.isdigit():
-            stock = int(stock_input)
-            break
-        print("El stock debe ser un número entero válido.")
+    # 1. Mostrar autores disponibles
+    autores = autores_service.mostrar_autores()
+    if not autores:
+        print("  ! No hay autores registrados. Registre un autor primero.")
+        pausar()
+        return
 
-    libro_obj, es_nuevo=service.crear_libro(titulo,id_aut,stock) 
-    if es_nuevo:
-        print(f"\n[+] ¡ÉXITO! Nuevo libro registrado con ID: {libro_obj.get_id()}")
+    print("  Autores disponibles:")
+    for a in autores:
+        print(f"    {a.get_id()} - {a.get_nombre()}")
+
+    # 2. Captura y validación del ID
+    id_autor = input("\n  ID del autor: ").strip().upper()
+    autor = autores_service.buscar_por_id(id_autor)
+    if not autor:
+        print("  ! Error: No se encontró un autor con ese ID.")
+        pausar()
+        return
+
+    # 3. Captura del Título
+    titulo_libro = input("  Título del libro: ").strip()
+    if not titulo_libro:
+        print("  ! Error: El título no puede estar vacío.")
+        pausar()
+        return
+
+    # 4. Captura del Stock
+    try:
+        stock = int(input("  Cantidad de ejemplares: ").strip())
+        if stock <= 0:
+            raise ValueError
+    except ValueError:
+        print("  ! Error: Ingrese una cantidad válida (número entero mayor a 0).")
+        pausar()
+        return
+
+    # 5. Llamada al servicio.
+    libro, es_nuevo = libros_service.crear_libro(titulo_libro, id_autor, stock)
+
+    # Lógica de salida limpia
+    if libro is None:
+        # Esto solo pasará si el servicio falla internamente
+        print("   ! Error: No se pudo registrar el libro en el sistema.")
     else:
-        print(f"\n[*] AVISO: El libro ya existía.")
-        print(f"    Se han sumado {stock} unidades al stock actual.")
-        print(f"    Stock total de '{libro_obj.get_titulo()}': {libro_obj.get_stock()}")
-
-    input("\nPresione Enter para continuar...")
- 
+        if es_nuevo:
+            print(f"\n  ¡Libro registrado exitosamente con ID: {libro.get_id()}!")
+        else:
+            print(f"\n  ¡Libro actualizado! Nuevo stock total: {libro.get_stock()}")
+    
+    pausar()

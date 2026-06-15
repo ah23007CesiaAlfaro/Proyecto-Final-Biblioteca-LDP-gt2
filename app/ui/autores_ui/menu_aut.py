@@ -1,7 +1,7 @@
-from app.ui.autores_ui.crear_ui_aut import crear
-from app.ui.autores_ui.eliminar_ui_aut import eliminar
-from app.ui.autores_ui.leer_ui_aut import listar
-from app.ui.autores_ui.actualizar_ui_aut import actualizar
+from app.ui.autores_ui.crear_ui_aut import vista_crear_autor
+from app.ui.autores_ui.eliminar_ui_aut import vista_eliminar_autor
+from app.ui.autores_ui.leer_ui_aut import vista_listar_autores
+from app.ui.autores_ui.actualizar_ui_aut import vista_actualizar_autor
 
 def menu_autores(service):
     while True:
@@ -16,13 +16,13 @@ def menu_autores(service):
         opcion = input("Seleccionar opción: ")
 
         if opcion == "1":
-            crear(service)
+            vista_crear_autor(service)
         elif opcion == "2":
-            listar(service)
+            vista_listar_autores(service)
         elif opcion == "3":
-            actualizar(service)
+            vista_actualizar_autor(service)
         elif opcion == "4":
-            eliminar(service)
+            vista_eliminar_autor(service)
         elif opcion == "0":
             break
         else:

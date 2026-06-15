@@ -14,7 +14,7 @@ def realizar_devolucion(prestamos_service, socios_service, libros_service):
     id_libro = input("  ID del libro a devolver: ").strip().upper()
     libro = libros_service.buscar_por_id(id_libro)
     if not libro:
-        print(" ¡ No se encontró un libro con ese ID.!")
+        print(" ¡No se encontró un libro con ese ID.!")
         pausar()
         return
 
@@ -38,7 +38,7 @@ def realizar_devolucion(prestamos_service, socios_service, libros_service):
 
     if multa > 0:
         print("\n ╔══════════════════════════════════════╗")
-        print(f"  ║   MULTA GENERADA: ${multa:.2f}      ")
+        print(f"  ║   MULTA GENERADA: ${multa:.2f}       ║")
         print("   ╚══════════════════════════════════════╝")
         print(f"\n  El socio debe pagar ${multa:.2f} antes de realizar un nuevo préstamo.")
     else:

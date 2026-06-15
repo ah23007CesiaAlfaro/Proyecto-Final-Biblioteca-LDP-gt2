@@ -1,4 +1,4 @@
-def eliminar(service):
+def vista_eliminar_autor(service):
     print("\n--- ELIMINAR AUTOR ---")
     id_autor = input("Ingrese el ID del autor a eliminar (ej. AUT01): ")
     eliminado = service.eliminar_autor(id_autor)
@@ -7,3 +7,4 @@ def eliminar(service):
     else:
         print("\n No se encontró ningún autor con ese ID.")
     input("\nPresione Enter para continuar...")
+    

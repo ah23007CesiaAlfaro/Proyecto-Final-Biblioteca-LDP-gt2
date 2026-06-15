@@ -6,15 +6,18 @@ from app.services.prestamos_services import PrestamosServices
 from app.ui.autores_ui.menu_aut import menu_autores
 from app.ui.libro_ui.menu_libro import menu_libros
 from app.ui.socios_ui.menu_soc import menu_socios
-from app.ui.prestamo_ui.prestamo_ui import realizar_prestamo
-from app.ui.prestamo_ui.devolucion_ui import realizar_devolucion
-from app.ui.prestamo_ui.pago_multa_ui import pagar_multa
-
+from app.ui.prestamos_ui.prestamo_ui import realizar_prestamo
+from app.ui.prestamos_ui.devolucion_ui import realizar_devolucion
+from app.ui.prestamos_ui.pago_multa_ui import pagar_multa
 
 def mostrar_menu():
-    # Servicios compartidos entre todos los módulos
+    # 1. Creamos el servicio de autores una sola vez
     autores_service = AutoresServices()
-    libros_service = LibrosServices()
+    
+    # 2. INYECCIÓN: Pasamos autores_service al crear libros_service
+    # ESTO ES LO QUE HACE QUE SE CONECTEN Y COMPARTAN DATOS
+    libros_service = LibrosServices(autores_service)
+    
     socios_service = SociosServices()
     prestamos_service = PrestamosServices()
 
@@ -36,6 +39,7 @@ def mostrar_menu():
         if op == "1":
             menu_autores(autores_service)
         elif op == "2":
+            # Pasamos ambos servicios conectados
             menu_libros(libros_service, autores_service)
         elif op == "3":
             menu_socios(socios_service)
@@ -46,7 +50,7 @@ def mostrar_menu():
         elif op == "6":
             pagar_multa(prestamos_service, socios_service)
         elif op == "7":
-            print("\n  ¡Hasta luego! Cerrando el sistema de biblioteca...\n")
+            print("\n  ¡Hasta luego! Cerrando el sistema...\n")
             break
         else:
-            print("  [!] Opción no válida. Ingrese un número del 1 al 7.")
+            print("  [!] Opción no válida.")

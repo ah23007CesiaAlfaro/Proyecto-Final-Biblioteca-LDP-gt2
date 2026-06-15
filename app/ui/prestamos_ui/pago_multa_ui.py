@@ -11,7 +11,7 @@ def pagar_multa(prestamos_service, socios_service):
         pausar()
         return
 
-    multa = socio.get_multa()
+    multa = socio.get_multas()  
     if multa == 0:
         print(f"\n  El socio '{socio.get_nombre()}' no tiene multas pendientes.")
         pausar()

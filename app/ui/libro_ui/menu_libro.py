@@ -1,33 +1,29 @@
-from app.ui.libro_ui.crear_ui import crear
-from app.ui.libro_ui.eliminar_ui import eliminar
-from app.ui.libro_ui.leer_ui import listar
-from app.ui.libro_ui.actualizar_ui import actualizar
+from app.ui.helpers import titulo
+from app.ui.libro_ui.crear_ui import crear_libro
+from app.ui.libro_ui.leer_ui import leer_libros
+from app.ui.libro_ui.actualizar_ui import actualizar_libro
+from app.ui.libro_ui.eliminar_ui import vista_eliminar_libro 
 
-def menu_libros(service):
+def menu_libros(libros_service, autores_service):
     while True:
-     
-         print("\n" + "="*30)
-         print("MODULO DE LIBROS")
-         print ("1.Agregar Libro")
-         print ("2.Mostrar Libros")
-         print ("3.Actualizar  Libro")
-         print ("4.Eliminar Libro")
-         print  ("0. Salir")
-         print("="*30)
-         opcion= input("Seleccionar opcion :")
+        titulo("GESTIÓN DE LIBROS")
+        print("  1. Registrar libro")
+        print("  2. Ver libros")
+        print("  3. Actualizar libro")
+        print("  4. Eliminar libro")
+        print("  5. Volver al menú principal")
 
-         if opcion=="1":
-              crear(service)
-         elif opcion=="2":
-              listar(service)
-         elif opcion=="3":
-              actualizar(service)  
-             
-         elif  opcion=="4":
-              eliminar(service)
+        op = input("\n  Opción: ").strip()
 
-         elif opcion=="0":
-              break
-         else: 
-              print ("opcion no valida" )   
-              
+        if op == "1":
+            crear_libro(libros_service, autores_service)
+        elif op == "2":
+            leer_libros(libros_service, autores_service)
+        elif op == "3":
+            actualizar_libro(libros_service)
+        elif op == "4":
+            vista_eliminar_libro(libros_service) 
+        elif op == "5":
+            break
+        else:
+            print("  ! Opción no válida.")
