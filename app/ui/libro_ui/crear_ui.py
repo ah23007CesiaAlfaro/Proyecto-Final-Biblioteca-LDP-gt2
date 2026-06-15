@@ -42,7 +42,7 @@ def crear_libro(libros_service, autores_service):
     # 5. Llamada al servicio.
     libro, es_nuevo = libros_service.crear_libro(titulo_libro, id_autor, stock)
 
-    # Lógica de salida limpia y correcta
+    # Lógica de salida limpia
     if libro is None:
         # Esto solo pasará si el servicio falla internamente
         print("   ! Error: No se pudo registrar el libro en el sistema.")
