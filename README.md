@@ -11,9 +11,10 @@ Este proyecto consiste en el desarrollo de un **Sistema de Gestión Bibliotecari
 * **Jefry Odir Brizuela Rivas**
 
 ---
-##USO DEL SISTEMA.
+
 Para poder hacer uso de este sistema necesitas tener lo siguiente:
 **1. Preparación del Entorno (Tecnologías)**
+
 **Python:** Es el lenguaje base. Descarga la versión más reciente (3.12+) desde python.org. Al instalarlo, asegúrate de marcar la casilla "Add Python to PATH"; esto es crucial para que la terminal reconozca el comando python.
 
 **Visual Studio Code (VS Code):** Es tu editor de código. Descárgalo en code.visualstudio.com. Una vez instalado, abre VS Code y ve a la pestaña de Extensiones (el icono de cuadrados a la izquierda) e instala la extensión de Python (de Microsoft).
@@ -21,7 +22,7 @@ Para poder hacer uso de este sistema necesitas tener lo siguiente:
 **Terminal (CLI):** Puedes usar la terminal integrada de VS Code (Ctrl + Ñ o Ctrl + J). Es donde ejecutaremos los comandos para interactuar con tu sistema.
 
 **2.Ejecución**:Luego de asegurar tus tecnologias,clona este repositorio  y ejecuta el proyecto desde VS-Code, ve a la main  y empieza a interactuar con el programa.
----
+
 
 ##  Estructura y Arquitectura del Proyecto
 
